@@ -24,13 +24,14 @@ This project will be broken down into three main notebooks:
 * Evaluate your deployed classifier.
 
 ## Project Highlights
-**Type of Plagiarism**
-Dataset contains multiple text file. Each text file is associated with one Task (task A-E) and one Category of plagiarism, which you can see in the above DataFrame.
 
-*Tasks, A-E*
-Each text file contains an answer to one short question; these questions are labeled as tasks A-E. For example, Task A asks the question: "What is inheritance in object oriented programming?"
+###Type of Plagiarism
+- Dataset contains multiple text file. Each text file is associated with one Task (task A-E) and one Category of plagiarism, which you can see in the above DataFrame.
 
-*Categories of plagiarism*
+**Tasks, A-E**
+- Each text file contains an answer to one short question; these questions are labeled as tasks A-E. For example, Task A asks the question: "What is inheritance in object oriented programming?"
+
+**Categories of plagiarism**
 Each text file has an associated plagiarism label/category:
 
 1. Plagiarized categories: cut, light, and heavy.
@@ -40,16 +41,16 @@ Each text file has an associated plagiarism label/category:
 3. Special, source text category: orig.
    - This is a specific category for the original, Wikipedia source text. We will use these files only for comparison purposes.
 
-**Feature Engineering / Similarity Features**
+### Feature Engineering / Similarity Features
 
-*Containment*
+**Containment**
 Your first task will be to create containment features. To understand containment, let's first revisit a definition of [n-grams](https://en.wikipedia.org/wiki/N-gram). An n-gram is a sequential word grouping. For example, in a line like "bayes rule gives us a way to combine prior knowledge with new information," a 1-gram is just one word, like "bayes." A 2-gram might be "bayes rule" and a 3-gram might be "combine prior knowledge."
 
 Containment is defined as the intersection of the n-gram word count of the Wikipedia Source Text (S) with the n-gram word count of the Student Answer Text (S) divided by the n-gram word count of the Student Answer Text.
 
 If the two texts have no n-grams in common, the containment will be 0, but if all their n-grams intersect then the containment will be 1. Intuitively, you can see how having longer n-gram's in common, might be an indication of cut-and-paste plagiarism. In this project, it will be up to you to decide on the appropriate n or several n's to use in your final model.
 
-*Longest Common Subsequence*
+**Longest Common Subsequence**
 Containment a good way to find overlap in word usage between two documents; it may help identify cases of cut-and-paste as well as paraphrased levels of plagiarism. Since plagiarism is a fairly complex task with varying levels, it's often useful to include other measures of similarity. The paper also discusses a feature called longest common subsequence.
 
 The longest common subsequence is the longest string of words (or letters) that are the same between the Wikipedia Source Text (S) and the Student Answer Text (A). This value is also normalized by dividing by the total number of words (or letters) in the Student Answer Text.
